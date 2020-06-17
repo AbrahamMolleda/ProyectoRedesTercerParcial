@@ -1,0 +1,16 @@
+version: "3"
+services: 
+    ms-sql-server:
+        image: microsoft/mssql-server-linux
+        environment: 
+            ACCEPT_EULA: "Y"
+            SA_PASSWORD: "Aamr0501"
+            MSSQL_PID: Express
+        ports: 
+            - "1433:1433"
+    api:
+        depends_on: 
+            - "ms-sql-server"
+        build: .
+        ports: 
+            - "8080:80"
